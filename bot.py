@@ -28,7 +28,7 @@ TARGET_CHANNEL_ID = os.getenv("TARGET_CHANNEL_ID")
 if TOKEN is None or TARGET_CHANNEL_ID is None:
     raise ValueError("❌ Missing TOKEN or TARGET_CHANNEL_ID environment variables.")
 
-TARGET_CHANNEL_ID = int(TARGET_CHANNEL_ID)
+TARGET_CHANNEL_ID = 1365719475982303355
 
 replied_messages = set()
 
