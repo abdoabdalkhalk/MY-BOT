@@ -22,7 +22,7 @@ def keep_alive():
 keep_alive()
 
 # ====== Bot Settings ======
-TOKEN = "MTM2NTY2NDI1NDM5NjQ2OTMwOQ.GXJIjo.CEGL2--XWNeW2lVPL9kDY9gVltMKl7oThW5vvM"
+TOKEN = "..."
 TARGET_CHANNEL_ID = 1361055417572004034  # غيره برقم قناتك
 
 replied_messages = set()
