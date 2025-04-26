@@ -22,15 +22,19 @@ def keep_alive():
 keep_alive()
 
 # ====== Bot Settings ======
-import os
-TOKEN = os.getenv("DISCORD_TOKEN")
-TARGET_CHANNEL_ID = 1361055417572004034  # غيره برقم قناتك
+TOKEN = os.getenv("TOKEN")
+TARGET_CHANNEL_ID = os.getenv("TARGET_CHANNEL_ID")
+
+if TOKEN is None or TARGET_CHANNEL_ID is None:
+    raise ValueError("❌ Missing TOKEN or TARGET_CHANNEL_ID environment variables.")
+
+TARGET_CHANNEL_ID = int(TARGET_CHANNEL_ID)
 
 replied_messages = set()
 
 intents = discord.Intents.default()
-intents.message_content = True
 intents.messages = True
+intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -47,7 +51,6 @@ async def on_message(message):
     if message.channel.id == TARGET_CHANNEL_ID:
         if message.attachments and message.id not in replied_messages:
             for attachment in message.attachments:
-                # بدل الاعتماد على content_type نعتمد على امتداد الصورة
                 if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
                     await send_thank_you_embed(message)
                     replied_messages.add(message.id)
@@ -69,8 +72,8 @@ async def send_thank_you_embed(message):
 async def check_old_messages():
     print("🔄 Checking old messages...")
     channel = bot.get_channel(TARGET_CHANNEL_ID)
-    if not channel:
-        print("❌ Channel not found.")
+    if not isinstance(channel, discord.TextChannel):
+        print("❌ Target channel is not a TextChannel.")
         return
 
     async for message in channel.history(limit=100):
