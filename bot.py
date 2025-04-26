@@ -28,8 +28,6 @@ TARGET_CHANNEL_ID = 1365719475982303355
 if TOKEN is None or TARGET_CHANNEL_ID is None:
     raise ValueError("❌ Missing TOKEN or TARGET_CHANNEL_ID environment variables.")
 
-TARGET_CHANNEL_ID = 1365719475982303355
-
 replied_messages = set()
 
 intents = discord.Intents.default()
@@ -60,13 +58,17 @@ async def on_message(message):
 
 async def send_thank_you_embed(message):
     embed = discord.Embed(
-        title="🎉 Thanks for the subscribe!",
-        description="Open a ticket to claim your **1 days VIP Basic Panel**.\n\n⚠️ **WARNING:** If this screenshot is not from YouTube, you will get banned from Discord .",
+        title="🎉 Thanks for subscribing!",
+        description=(
+            "Open a ticket to claim your **1-day VIP Basic Panel**.\n\n"
+            "[Click here to open a ticket 🎟️](https://discord.com/channels/1319471351047786590/1319475322743164929)\n\n"
+            "⚠️ **WARNING:** If this screenshot is not from YouTube, you will be banned from the server."
+        ),
         color=discord.Color.blue()
     )
     embed.set_thumbnail(url=message.attachments[0].url)
     embed.set_footer(text="VIP Reward System")
-    await message.channel.send(embed=embed)
+    await message.reply(embed=embed)  # <==== هنا بدل send إلى reply مباشرة على الرسالة
 
 @tasks.loop(minutes=5)
 async def check_old_messages():
