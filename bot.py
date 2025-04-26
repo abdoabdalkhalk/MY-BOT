@@ -61,7 +61,7 @@ async def on_message(message):
 async def send_thank_you_embed(message):
     embed = discord.Embed(
         title="🎉 Thanks for the subscribe!",
-        description="Open a ticket to claim your **2 days VIP Basic Panel**.\n\n⚠️ **WARNING:** If this screenshot is not from YouTube, you will get banned from YouTube.",
+        description="Open a ticket to claim your **1 days VIP Basic Panel**.\n\n⚠️ **WARNING:** If this screenshot is not from YouTube, you will get banned from Discord .",
         color=discord.Color.blue()
     )
     embed.set_thumbnail(url=message.attachments[0].url)
