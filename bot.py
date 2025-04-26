@@ -23,12 +23,12 @@ keep_alive()
 
 # ====== Bot Settings ======
 TOKEN = os.getenv("TOKEN")
-TARGET_CHANNEL_ID = 1361055417572004034
+TARGET_CHANNEL_ID = 1365719475982303355
 
 if TOKEN is None or TARGET_CHANNEL_ID is None:
     raise ValueError("❌ Missing TOKEN or TARGET_CHANNEL_ID environment variables.")
 
-TARGET_CHANNEL_ID = 1361055417572004034
+TARGET_CHANNEL_ID = 1365719475982303355
 
 replied_messages = set()
 
